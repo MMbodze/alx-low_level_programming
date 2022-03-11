@@ -1,41 +1,30 @@
+  GNU nano 5.9                      1-last_digit.c
+
+#include <stdlib.h>
+#include <time.h>
 #include <stdio.h>
 
 /**
  * main - main block
- * Description - Use 'putchar' to print the lowercase alphabets
-#include <stdio.h>
-
-/**
- * main - main block
- * Description - Use 'putchar' to print the lowercase alphabets
+ * Description - assigns a random number and determines it's last digit
+ * prints a phrase
  * Return: 0
  */
 int main(void)
 {
-        char a = 'a';
+	int n;
+	int z;
 
-        while (a <= 'z')
-        {
-                putchar(a);
-                a++;
-        }
-        putchar('\n');
+	srand(time(0));
+	n = rand() - RAND_MAX / 2;
+	z = n % 10;
 
-        return (0);
-}
-
- * Return: 0
- */
-int main(void)
-{
-	char a = 'a';
-
-	while (a <= 'z')
-	{
-		putchar(a);
-		a++;
-	}
-	putchar('\n');
+	if (z > 5)
+		printf("Last digit of %i is %i and is greater than 5\n", n, z);
+	else if (z == 0)
+		printf("Last digit of %i is %i and is 0\n", n, z);
+	else
+		printf("Last digit of %i is %i and is less than 6 and not 0\n", n, z);
 
 	return (0);
 }
