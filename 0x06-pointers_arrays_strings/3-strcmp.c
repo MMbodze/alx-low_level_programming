@@ -1,23 +1,3 @@
-  GNU nano 5.9                       3-strcmp.c
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #include "main.h"
 
 /**
