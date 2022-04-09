@@ -3,29 +3,48 @@
 #include <stdlib.h>
 
 /**
- * *array_range - creates an array of integers
- * @min: minimum value
- * @max: maximum value
- * Return: pointer to the created array
- * or NULL if it fails
+ * *_realloc - reallocates a memory block using
+ * malloc and free
+ * @ptr: pointer to the memory previously allocated
+ * @old_size: size of the allocated space for ptr
+ * @new_size: new size in the byte of the new memory block
+ * Return: pointer to the newly allocated memory block
  */
 
-int *array_range(int min, int max)
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
-	int *a;
-	int b, size;
+	char *a, *b;
+	unsigned int c;
 
-	if (min > max)
+	if (new_size == old_size)
+		return (ptr);
+
+	if (new_size == 0 && ptr != NULL)
+	{
+		free(ptr);
 		return (NULL);
+	}
+	if (ptr == NULL)
+		return (malloc(new_size));
 
-	size = max - min + 1;
-
-	a = malloc(sizeof(*a) * size);
+	a = malloc(new_size);
 	if (a == NULL)
 		return (NULL);
 
-	for (b = 0; min <= max; b++, min++)
-		a[b] = min;
+	b = ptr;
 
+	if (new_size < old_size)
+	{
+		for (c = 0; c < new_size; c++)
+			a[c] = b[c];
+	}
+
+	if (new_size > old_size)
+	{
+		for (c = 0; c < old_size; c++)
+			a[c] = b[c];
+	}
+
+	free(ptr);
 	return (a);
 }
